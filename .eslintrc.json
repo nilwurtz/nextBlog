@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    // Uses the recommended rules from @eslint-plugin-react
+    "plugin:react/recommended",
+    // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    "plugin:@typescript-eslint/recommended",
+    // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "quotes": "off",
+    "prettier/prettier": "off", //ESLintでPrettierの規則はエラーとして検出しない設定
+    "react/prop-types": "off" // https://ginpen.com/2019/08/06/eslint-for-react-in-typescript/
+  }
+}
