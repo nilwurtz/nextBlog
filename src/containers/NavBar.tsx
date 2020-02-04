@@ -28,7 +28,7 @@ export const NavBar: NextComponentType = () => {
 
   const navBarContents = [
     { name: "Home", href: "/" },
-    { name: "About", href: "#" },
+    { name: "About", href: "/about" },
     { name: "Posts", href: "/post" },
     { name: "Contact", href: "#" },
   ];
