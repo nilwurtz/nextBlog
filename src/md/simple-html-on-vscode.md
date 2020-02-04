@@ -2,7 +2,7 @@
 title: VSCodeで HTMLとSCSSを書くシンプルな環境を構築する
 tags: HTML scss Sass VSCode
 author: ragnar1904
-date: 2019-07-10
+date: 2020-01-29
 slide: false
 ---
 ## やること
