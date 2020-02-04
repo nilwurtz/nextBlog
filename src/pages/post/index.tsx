@@ -42,6 +42,13 @@ PostListPage.getInitialProps = async function() {
       md: mdData,
     };
   });
+  // postを日付でソート
+  posts.sort((a, b) => {
+    if (a.md.data.date > b.md.data.date) return -1;
+    if (a.md.data.date < b.md.data.date) return 1;
+    return 0;
+  });
+
   return {
     posts: posts,
   };
