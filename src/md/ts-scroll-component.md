@@ -2,7 +2,7 @@
 title: 【React + Typescript】スクロール位置を取得するコンポーネント
 tags: React TypeScript
 author: ragnar1904
-date: 2019-07-10
+date: 2020-01-29
 slide: false
 ---
 よく使うのでメモ。

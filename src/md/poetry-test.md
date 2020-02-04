@@ -2,7 +2,7 @@
 title: 【Python】Poetry始めてみた & Pipenv から poetry へ移行した所感
 tags: Poetry Python
 author: ragnar1904
-date: 2019-07-10
+date: 2020-01-17
 slide: false
 ---
 

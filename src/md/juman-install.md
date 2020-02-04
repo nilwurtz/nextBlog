@@ -2,7 +2,7 @@
 title: 【CentOS7】juman++ のインストール
 tags: juman++ centos7 NLP 自然言語処理
 author: ragnar1904
-date: 2019-10-10
+date: 2020-01-17
 slide: false
 ---
 ## 概要
