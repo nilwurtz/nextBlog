@@ -38,6 +38,7 @@ export const MarkDownViewer: React.FC<Props> = (props: Props) => {
 };
 
 const MarkDownArea = styled(ReactMarkdown)`
+  word-break: break-all;
   & h1 {
     margin: 4rem 0 2rem 0;
     padding-bottom: 5px;

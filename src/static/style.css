@@ -7,3 +7,9 @@ html {
 *::after {
   box-sizing: border-box;
 }
+
+a,
+a:visited {
+  color: #0000ff;
+  cursor: pointer;
+}
