@@ -34,6 +34,7 @@ class CustomDocument extends Document {
           <meta name="viewport" content="width=device-width,height=device-height" key="viewport" />
           <link rel="shortcut icon" href="/static/shortcut-icon.png" key="shortcutIcon" />
           <link href="https://fonts.googleapis.com/css?family=Exo|Noto+Sans+JP&display=swap" rel="stylesheet"></link>
+          <title>Ragnar Blog</title>
         </Head>
 
         <body>
