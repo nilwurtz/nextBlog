@@ -225,8 +225,14 @@ const NavContainer = styled.nav`
       padding: 10px 15px;
     }
 
-    &.dark li::after {
-      background-color: white;
+    &.dark {
+      & li:hover {
+        background-color: ${color.primary.dark};
+        color: white;
+      }
+      & li::after {
+        background-color: white;
+      }
     }
   }
 `;
