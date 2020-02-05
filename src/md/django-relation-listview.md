@@ -5,7 +5,9 @@ author: ragnar1904
 date: 2019-12-17
 slide: false
 ---
-#はじめに
+
+# はじめに
+
 こんにちは。(実務での)Django歴1.5ヶ月のragnarと申します。
 Djangoを始めた際、チュートリアルは行ったものの、実際作るとなると新しい概念が多く、どうしていいかよくわからなくなることがありました。
 
@@ -14,14 +16,14 @@ Djangoを扱う前はSQLを書いてDB操作していたので、Querysetとい�
 
 今回はそんな「Djangoをチュートリアルまで触ってみたけどよくわからなかった」人向けの記事です。
 
-#環境
+# 環境
 - Python 3.7.4
 - MacOS Mojave 10.14.6
 - Django 2.2.8
 
 
 
-#前提となるmodel
+# 前提となるmodel
 今回は、サッカーチームとプレイヤー、プレイヤーの情報を一覧で見れるサイトを想定します。
 チーム、ポジション、プレイヤーのテーブル（model）を作成しました。
 
@@ -165,6 +167,7 @@ urlpatterns = [
 </html>
 ```
 まずListViewで覚えておかないといけないのは、ViewからTemplateには **[model名(小文字)]_list** という名前でオブジェクトが渡されることです。（自分で指定することも出来ます。）
+
 これをtemplate内でforで取り出し、**[forで取り出した変数].name** で名前を取り出すことが出来ます。
 **name**はmodelで定義したmodelのfieldのことです。
 おそらくチュートリアル等でやったことがあると思います。
@@ -173,7 +176,7 @@ urlpatterns = [
 ![スクリーンショット 2019-12-16 23.16.56.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/508043/0f2f7df1-8c44-b1d9-68a0-b7b223496828.png)
 
 ---
-###Foreignkeyで結びついた値の取り出し
+### Foreignkeyで結びついた値の取り出し
 
 つぎに、プレイヤーに紐付いたチームを取り出してみます。
 リレーション先と言っても、OnetoOneField（1対1）およびForeignkey(1対n)の関係の場合、通常の書き方と変わりません。
@@ -207,7 +210,7 @@ Djangoは特に指定せずとも、Playerオブジェクトに紐付いたレ�
 最初はこの感覚がわからず、慣れるのに苦労しました。
 
 ---
-###ManytoManyFieldで結びついた値の取り出し
+### ManytoManyFieldで結びついた値の取り出し
 
 次はManytoManyField、n対nで結びついたリレーションの場合です。
 n対nなので、複数のレコードが取得されます。今回の場合、プレイヤー一人に付き複数のポジションです。
@@ -325,7 +328,7 @@ urlpatterns = [
 ![スクリーンショット 2019-12-17 0.27.10.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/508043/885f97ba-b2ea-6680-6545-406c18e2aead.png)
 
 
-##発行されるSQLを確認する
+## 発行されるSQLを確認する
 
 チーム一覧ページにて、django-debug-toolbarを用いてSQLの確認をしてみます。
 サイドに表示されている、django-debug-toolbarからSQLパネルをクリックすると、こうなっています。
