@@ -7,25 +7,24 @@ slide: false
 ---
 # はじめに
 
-###*pipenv、使ってますか？*
+### *pipenv、使ってますか？*
 
 pipenvはそのプロジェクトのパッケージ管理や仮想環境の構築を簡単に自動で行ってくれるツールです。
 pyenvとの連携もしてくれる、かなり便利なやつです。
 
-  
-  
 
-####でもこんな経験ありませんか？
+#### でもこんな経験ありませんか？
 > 実行したらエラー起きたからpipで入れたけど仮想環境入ってないだけだったわ...　　
 
 自分はめっちゃやります。
 
 # そこで！
-####Pipfileがあるところにcdしたらpipenv shellするshellscriptを書きました
+#### Pipfileがあるところにcdしたらpipenv shellするshellscriptを書きました
 
 # 作った
 
-```bash:~/.bash_autopipenv
+
+```bash:/.bash_autopipenv
 #!/bin/bash
 
 function ispipenv()
@@ -53,15 +52,17 @@ alias cd='pipenv_cd'
 if [ "$PIPENV_ACTIVE" == 1 ]; then
    ...
 ```
-仮想環境に入ると、PIPENV_ACTIVEという環境変数が定義されるのを利用しています。
-仮想環境に入っていない場合はPIPENV_ACTIVEは定義されないため、エラー回避の意味で"$PIPENV_ACTIVE"で評価しています。
+
+仮想環境に入ると、PIPENV_ACTIVEという環境変数が定義されるのを利用しています。  
+仮想環境に入っていない場合はPIPENV_ACTIVEは定義されないため、エラー回避の意味で"$PIPENV_ACTIVE"で評価しています。  
 これで仮想環境に入った状態ではpipenv shellが実行されません。  
 
-またpipenv_cd内の\cdをcdとしてしまうと、
+  
+またpipenv_cd内の\cdをcdとしてしまうと、  
 pipenv_cd内でpipenv_cdが呼ばれその中でpipenv_cdが呼ばれ・・・となってしまうので注意が必要です。  
 
-##常時読み込ませる
-.bash_profileや.bashrcに以下を追記すれば常時読み込みしてくれるので、pipenv shellを実行し忘れることはなくなりました:ok_hand:
+## 常時読み込ませる
+.bash_profileや.bashrcに以下を追記すれば常時読み込みしてくれるので、pipenv shellを実行し忘れることはなくなりました
 
 ```bash
 if [ -f ~/.bash_autopipenv ]; then
