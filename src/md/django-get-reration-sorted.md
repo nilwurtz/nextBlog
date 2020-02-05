@@ -5,6 +5,7 @@ author: ragnar1904
 date: 2019-12-29
 slide: false
 ---
+
 # リレーション先の値をsortする方法
 
 `Country -> Team -> Player`
@@ -23,6 +24,8 @@ from django.db.models import Prefetch
 
 `prefetch_related`の中身にPrefetchオブジェクトをセットする。
 
+
 ### 公式Doc
+
 QuerySet API reference | Django ドキュメント | Django
 https://docs.djangoproject.com/ja/2.2/ref/models/querysets/#prefetch-objects

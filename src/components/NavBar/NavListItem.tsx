@@ -12,7 +12,7 @@ export const NavListItem: NextComponentType<NextPageContext, {}, Props> = props 
   return (
     <li>
       <Link href={props.href}>
-        <a>{props.name}</a>
+        <a style={{ display: "block" }}>{props.name}</a>
       </Link>
     </li>
   );

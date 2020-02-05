@@ -1,5 +1,5 @@
 import { NextComponentType } from 'next';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { HamburgerButton } from '../components/common/HamburgerButton';
@@ -36,16 +36,19 @@ export const NavBar: NextComponentType = () => {
   const handleOpen = (): void => {
     setOpen(!open);
   };
+
   const containerClassName = `${isTop ? "" : "dark"} ${open ? "is-Active" : ""}`;
 
   return (
     <NavRoot className={isTop ? "" : "dark"}>
-      <NavTitle>Ragnar Blog</NavTitle>
+      <NavTitle>
+        <a href="/">Ragnar Blog</a>
+      </NavTitle>
       <Btn>
         <HamburgerButton onClick={handleOpen} />
       </Btn>
       <NavContainer className={containerClassName}>
-        <ul>
+        <ul onClick={handleOpen}>
           {navBarContents.map((item, key) => (
             <NavListItem name={item.name} href={item.href} key={key} />
           ))}
@@ -222,8 +225,14 @@ const NavContainer = styled.nav`
       padding: 10px 15px;
     }
 
-    &.dark li::after {
-      background-color: white;
+    &.dark {
+      & li:hover {
+        background-color: ${color.primary.dark};
+        color: white;
+      }
+      & li::after {
+        background-color: white;
+      }
     }
   }
 `;
@@ -231,4 +240,9 @@ const NavContainer = styled.nav`
 const NavTitle = styled.h1`
   margin: 1rem;
   font-family: ${fonts.logo};
+  & a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
 `;

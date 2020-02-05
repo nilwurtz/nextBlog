@@ -6,6 +6,7 @@ const Color = {
     main: "#24618A",
     dark: "#102745",
   },
-};
+  secondary: "pink",
+} as const;
 
 export default Color;
