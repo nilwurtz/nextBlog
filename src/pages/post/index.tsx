@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import React from 'react';
 import styled from 'styled-components';
 
+import { Footer } from '../../components/common/Footer';
 import { PostList } from '../../containers/PostList';
 
 type Props = {
@@ -15,9 +16,12 @@ type Props = {
 export const PostListPage: NextPage<Props> = props => {
   const posts = props.posts;
   return (
-    <Root>
-      <PostList posts={posts} style={{ gridColumn: "2/3" }} />
-    </Root>
+    <>
+      <Root>
+        <PostList posts={posts} style={{ gridColumn: "2/3" }} />
+      </Root>
+      <Footer />
+    </>
   );
 };
 
