@@ -6,6 +6,6 @@ const Color = {
     main: "#24618A",
     dark: "#102745",
   },
-};
+} as const;
 
 export default Color;
