@@ -34,7 +34,7 @@ HTML ファイルで`!`を入力すると VScode のスニペット機能で HTM
 
 - スニペットで生成される HTML
 
-```html:html
+```xml:html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -148,7 +148,7 @@ HTML ファイルを開き、`Alt + L, Alt + O`
 
 href, src は相対パスを指定してやれば OK.
 
-```html
+```xml
 <html>
   <head>
     ...

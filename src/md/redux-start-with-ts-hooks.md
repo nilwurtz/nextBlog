@@ -247,7 +247,7 @@ export default store;
 
 storeを参照するために、`src/index.tsx`にProviderを設定します。
 
-```tsx:src/index.tsx
+```typescript:src/index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -270,7 +270,7 @@ useSelector関数の引数には、stateを引数にとり、使用するstate�
 一見よくわかりませんが、storeという大きなオブジェクトの中から必要な値を取得しているだけです。
 
 
-```tsx:component
+```typescript:component
 import { useSelector } from 'react-redux';
 
 import { RootState } from '../store';
@@ -290,7 +290,7 @@ Actionを発行するDispatchは、useDispatch Hookを使用します。
 dispatch(actionCreator())とすることでActionを発行します。
 ButtonコンポーネントはlabelとonClickを受け取るコンポーネントです。
 
-```tsx:component
+```typescript:component
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -323,7 +323,7 @@ export const Counter: React.FC = () => {
 
 以上を組み合わせ、Counterコンポーネントができました。
 
-```tsx:src/components/Counter.tsx
+```typescript:src/components/Counter.tsx
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -466,7 +466,7 @@ export const todoReducer = (state = initialState, action: TodoActionTypes) => {
 
 最後に、Reducerを結合して完了です。
 
-```ts:src/store/index.ts
+```typescript:src/store/index.ts
 import { combineReducers, createStore } from 'redux';
 
 import { countReducer } from './counter/reducer';
@@ -489,7 +489,7 @@ export default store;
 
 これで簡単なtodoアプリの完成です。
 
-```tsx:src/components/TodoForm.tsx
+```typescript:src/components/TodoForm.tsx
 import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -536,7 +536,7 @@ export const TodoForm: React.FC = () => {
 
 ```
 
-```tsx:src/components/TodoListItem.tsx
+```typescript:src/components/TodoListItem.tsx
 import React from 'react';
 import styled from 'styled-components';
 
