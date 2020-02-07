@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
+// import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { tomorrowNightBlue } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styled from 'styled-components';
 
@@ -19,7 +20,7 @@ type CodeLabelProps = {
 const divideCodeLang = (lang: string): CodeLabelProps => {
   if (!lang) {
     return {
-      lang: "ldif",
+      lang: "plaintext",
       fileName: null,
     };
   }
