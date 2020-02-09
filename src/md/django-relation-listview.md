@@ -146,7 +146,7 @@ urlpatterns = [
 ]
 ```
 
-```html:templates/player_list.html
+```xml:templates/player_list.html
 <!DOCTYPE html>
 <html>
   <head>
@@ -182,7 +182,7 @@ urlpatterns = [
 リレーション先と言っても、OnetoOneField（1対1）およびForeignkey(1対n)の関係の場合、通常の書き方と変わりません。
 nameの場合と同じ様に、リレーション先のfield名を指定するだけです。
 
-```html:templates/player_list.html
+```xml:templates/player_list.html
 <!DOCTYPE html>
 <html>
   <head>
@@ -216,7 +216,7 @@ Djangoは特に指定せずとも、Playerオブジェクトに紐付いたレ�
 n対nなので、複数のレコードが取得されます。今回の場合、プレイヤー一人に付き複数のポジションです。
 1対n等とは異なり、`player.position`では取得出来ません。`player.position.all`とし、それをforで取り出す必要があります。
 
-```html:templates/player_list.html
+```xml:templates/player_list.html
 <!DOCTYPE html>
 <html>
   <head>
@@ -296,7 +296,7 @@ urlpatterns = [
 
 `team.player.all`で取得したらforでひとつずつ取り出すのは先程と同じです。
 
-```html:templates/team_list.html
+```xml:templates/team_list.html
 <!DOCTYPE html>
 <html>
   <head>

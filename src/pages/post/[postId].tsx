@@ -1,8 +1,9 @@
 import matter from 'gray-matter';
 import { NextPage, NextPageContext } from 'next';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
+import { Footer } from '../../components/common/Footer';
 import { MarkDownViewer } from '../../components/Post/MarkDownViewer';
 import { TitleHeader } from '../../components/Post/TitleHeader';
 import { dateFormat } from '../../utils/date';
@@ -25,6 +26,7 @@ const PostDetailPage: NextPage<Props> = props => {
           <div>side content</div>
         </SideArea>
       </Root>
+      <Footer />
     </React.Fragment>
   );
 };
@@ -32,6 +34,7 @@ const PostDetailPage: NextPage<Props> = props => {
 const Root = styled.div`
   display: grid;
   grid-template-columns: 5vw calc(100vw - 10vw) 5vw;
+  margin-bottom: 10vh;
   /* desktop */
   @media screen and (min-width: 800px) {
     /* 10vw : 1 : 0.381 : 10vw */

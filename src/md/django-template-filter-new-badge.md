@@ -66,7 +66,7 @@ template内では以下のように利用します。
 以下はお知らせ一覧を表示し、一週間以内であればnew!バッジをつける例です。bootstrapを使用しています。
 contextにnewかどうかを判断したboolを渡すより、かなりすっきりします。
 
-```html:template
+```xml:template
 {% load sample_filter %}
     ...
     {% for news in news_list %}
@@ -95,7 +95,7 @@ def cut(value, arg):
     return value.replace(arg, '')
 ```
 
-```html
+```xml
 {{ somevariable|cut:"0" }}
 ```
 
