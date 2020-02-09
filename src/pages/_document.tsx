@@ -2,6 +2,8 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
+import { GoogleAnalytics } from '../components/head/Analytics';
+
 class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -34,6 +36,7 @@ class CustomDocument extends Document {
           <meta name="viewport" content="width=device-width,height=device-height" key="viewport" />
           <link rel="shortcut icon" href="/static/shortcut-icon.png" key="shortcutIcon" />
           <link href="https://fonts.googleapis.com/css?family=Exo|Noto+Sans+JP&display=swap" rel="stylesheet"></link>
+          <GoogleAnalytics />
         </Head>
 
         <body>
