@@ -1,5 +1,6 @@
 import matter from 'gray-matter';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,6 +18,10 @@ export const PostListPage: NextPage<Props> = props => {
   const posts = props.posts;
   return (
     <>
+      <Head>
+        <title key="title">記事一覧 - Ragnar Blog</title>
+      </Head>
+      <Title>記事一覧</Title>
       <Root>
         <PostList posts={posts} style={{ gridColumn: "2/3" }} />
       </Root>
@@ -24,6 +29,12 @@ export const PostListPage: NextPage<Props> = props => {
     </>
   );
 };
+
+const Title = styled.div`
+  text-align: center;
+  font-size: 2rem;
+  margin: 2em;
+`;
 
 const Root = styled.div`
   display: grid;

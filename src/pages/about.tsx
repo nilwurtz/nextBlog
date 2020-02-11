@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,23 +15,31 @@ const About: NextPage = () => {
     padding: "1em 1em 1em 25px",
   };
   return (
-    <Root>
-      <MainArea>
-        <BaseCard style={cardStyle}>
-          <h1>About Me</h1>
-        </BaseCard>
-        <h2>Ragnar</h2>
-        <p>社会人一年目。業務ではPythonをもっぱら触ってます。最近はReact + Typescriptに夢中。</p>
-        <SocialLinks />
-        <BaseCard style={cardStyle}>
-          <h1>About This Site</h1>
-        </BaseCard>
-        <p>Made by Next.js + Typescript + styled-components</p>
-        <p>
-          <a href={SocialUrls.siteGitRepo}>view in github</a>
-        </p>
-      </MainArea>
-    </Root>
+    <>
+      <Head>
+        <title key="title">About - Ragnar Blog</title>
+      </Head>
+      <Root>
+        <MainArea>
+          <BaseCard clickable={false} style={cardStyle}>
+            <h1>About Me</h1>
+          </BaseCard>
+          <h2>Ragnar</h2>
+          <ProfileIcon>
+            <img src="/profile_icon.png" alt="profile icon" width="300px" height="300px" />
+          </ProfileIcon>
+          <p>社会人一年目。業務ではPythonをもっぱら触ってます。最近はReact + Typescriptに夢中。</p>
+          <SocialLinks />
+          <BaseCard clickable={false} style={cardStyle}>
+            <h1>About This Site</h1>
+          </BaseCard>
+          <p>Made by Next.js + Typescript + styled-components</p>
+          <p>
+            <a href={SocialUrls.siteGitRepo}>view in github</a>
+          </p>
+        </MainArea>
+      </Root>
+    </>
   );
 };
 
@@ -53,7 +62,7 @@ const MainArea = styled.div`
   }
   & h2,
   p {
-    margin-left: 1rem;
+    margin-left: 1.4rem;
   }
   & h1 {
     font-size: 2rem;
@@ -73,6 +82,12 @@ const MainArea = styled.div`
       font-size: 1.7rem;
     }
   }
+`;
+
+const ProfileIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default About;

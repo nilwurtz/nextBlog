@@ -34,6 +34,10 @@ const Root = styled.div`
 const TitleArea = styled.div`
   font-size: 1.3rem;
   margin: 1rem;
+  word-break: break-all;
+  & p {
+    margin: 0.5rem 0;
+  }
 
   @media screen and (min-width: 800px) {
     font-size: 5rem;
@@ -49,7 +53,6 @@ const TitleArea = styled.div`
     }
     & p {
       font-size: 2rem;
-      margin: 0.5rem 0;
     }
   }
 `;
