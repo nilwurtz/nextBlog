@@ -1,11 +1,13 @@
 import matter from 'gray-matter';
 import { NextPage, NextPageContext } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 
 import { Footer } from '../../components/common/Footer';
 import { MarkDownViewer } from '../../components/Post/MarkDownViewer';
 import { TitleHeader } from '../../components/Post/TitleHeader';
+import { SocialButtons } from '../../components/social/ShareButtons';
 import { dateFormat } from '../../utils/date';
 
 type Props = {
@@ -17,7 +19,11 @@ const PostDetailPage: NextPage<Props> = props => {
   const formattedDate = meta.date ? dateFormat(meta.date) : "2000-01-01";
   return (
     <React.Fragment>
+      <Head>
+        <title key="title">{meta.title} - Ragnar Blog</title>
+      </Head>
       <TitleHeader title={meta.title} date={formattedDate} />
+      <SocialButtons shareUrl="" text="" />
       <Root>
         <ContentArea>
           <MarkDownViewer md={props.md.content} />

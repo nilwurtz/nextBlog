@@ -123,6 +123,7 @@ const MarkDownArea = styled(ReactMarkdown)`
   }
   & p {
     font-size: 1.5rem;
+    margin: 0.5em 0;
   }
   & p code {
     padding: 0.1em 0.4em;

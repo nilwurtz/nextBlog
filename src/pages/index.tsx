@@ -1,14 +1,19 @@
 import { NextPage } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 
 import { IndexHeader } from '../containers/IndexHeader';
 
 const Index: NextPage = () => (
-  <div>
+  <>
+    <Head>
+      <title key="title">Ragnar Blog</title>
+    </Head>
+
     <IndexHeader />
     <SampleContent />
-  </div>
+  </>
 );
 
 export default Index;
