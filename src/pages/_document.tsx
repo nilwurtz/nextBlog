@@ -31,7 +31,7 @@ class CustomDocument extends Document {
   }
   render() {
     return (
-      <Html>
+      <Html lang="ja">
         <Head>
           <meta name="viewport" content="width=device-width,height=device-height" key="viewport" />
           <link rel="shortcut icon" href="/static/shortcut-icon.png" key="shortcutIcon" />
