@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
-// import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { tomorrowNightBlue } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styled from 'styled-components';
 
@@ -124,6 +123,7 @@ const MarkDownArea = styled(ReactMarkdown)`
   }
   & p {
     font-size: 1.5rem;
+    margin: 0.5em 0;
   }
   & p code {
     padding: 0.1em 0.4em;

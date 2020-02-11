@@ -6,18 +6,19 @@ import color from '../../config/color';
 
 type Props = {
   style?: React.CSSProperties;
+  clickable?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 export const BaseCard: NextComponentType<NextPageContext, {}, Props> = props => {
   return (
-    <Root onClick={props.onClick} style={props.style}>
+    <Root clickable={props.clickable} onClick={props.onClick} style={props.style}>
       {props.children}
     </Root>
   );
 };
 
-const Root = styled.div`
+const Root = styled.div<{ clickable: boolean }>`
   background: white;
   color: ${color.primary.dark};
   padding: 3em;
@@ -25,14 +26,14 @@ const Root = styled.div`
   transition: background-color 250ms ease-out;
   position: relative;
   & :hover {
-    background: ${color.white};
+    background: ${({ clickable }): string => (clickable ? color.white : "inherit")};
   }
   &:before {
     content: "";
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 0px;
-    height: calc(100% - 1px);
+    height: calc(100% - 0.5px);
     width: 20px;
     background-color: pink;
   }

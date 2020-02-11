@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { GitHubIcon } from '../components/social/GitHubIcon';
+import { QiitaIcon } from '../components/social/QiitaIcon';
 import { TwitterIcon } from '../components/social/TwitterIcon';
 
 export const SocialLinks: React.FC = () => {
@@ -9,6 +10,7 @@ export const SocialLinks: React.FC = () => {
     <Root>
       <TwitterIcon />
       <GitHubIcon />
+      <QiitaIcon />
     </Root>
   );
 };
