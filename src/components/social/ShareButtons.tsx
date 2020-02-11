@@ -5,9 +5,8 @@ import color from '../../config/color';
 import { ShareLinks } from '../../config/social';
 
 type Props = {
-  shareUrl: string;
-  text?: string;
   style?: React.CSSProperties;
+  vertical?: boolean;
 };
 
 type LinkProps = {
@@ -31,10 +30,12 @@ export const SocialButtons: React.FC<Props> = props => {
   const LinkOpen = (url: string) => {
     window.open(url, "newtab");
   };
+
+  const alignStyle: React.CSSProperties = props.vertical ? { flexDirection: "column" } : { flexDirection: "row" };
+
   return (
     <Root style={props.style}>
-      <IconContainer>
-        <span>Share</span>
+      <IconContainer style={alignStyle}>
         <Twitter onClick={() => LinkOpen(links.twitter)} />
         <FaceBook onClick={() => LinkOpen(links.facebook)} />
       </IconContainer>
@@ -47,10 +48,10 @@ const Root = styled.div``;
 const IconContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
   & > * {
-    margin: 0.5em 1em;
+    margin: 0.5em 0.5em;
   }
 `;
 
@@ -58,19 +59,20 @@ const MaskPng = styled.div`
   height: 50px;
   width: 50px;
   mask: no-repeat center/70%;
-  background: ${color.primary.main};
+  background: ${color.gray};
+  transition: background-color 150ms ease-in;
 `;
 
 const Twitter = styled(MaskPng)`
   mask-image: url(/tw_share.png);
   &:hover {
-    background: ${color.primary.main};
+    background: ${color.twitter};
   }
 `;
 
 const FaceBook = styled(MaskPng)`
   mask-image: url(/fb_share.png);
   &:hover {
-    background: ${color.primary.main};
+    background: ${color.facebook};
   }
 `;
