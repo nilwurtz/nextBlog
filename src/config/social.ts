@@ -12,13 +12,11 @@ export const ShareLinks = {
       tweetText: "text",
       url: "url",
     },
-    color: "#55acee",
   },
   facebook: {
     url: "https://www.facebook.com/share.php",
     params: {
       url: "u",
     },
-    color: "#3B5998",
   },
 };

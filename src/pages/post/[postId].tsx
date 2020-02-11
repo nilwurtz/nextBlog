@@ -23,13 +23,14 @@ const PostDetailPage: NextPage<Props> = props => {
         <title key="title">{meta.title} - Ragnar Blog</title>
       </Head>
       <TitleHeader title={meta.title} date={formattedDate} />
-      <SocialButtons shareUrl="" text="" />
       <Root>
         <ContentArea>
           <MarkDownViewer md={props.md.content} />
         </ContentArea>
         <SideArea>
-          <div>side content</div>
+          <div>
+            <SocialButtons vertical={true} />
+          </div>
         </SideArea>
       </Root>
       <Footer />

@@ -7,6 +7,8 @@ const Color = {
     dark: "#102745",
   },
   secondary: "pink",
+  twitter: "#55acee",
+  facebook: "#3B5998",
 } as const;
 
 export default Color;
