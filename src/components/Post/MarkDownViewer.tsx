@@ -131,6 +131,7 @@ const MarkDownArea = styled(ReactMarkdown)`
     font-size: inherit;
   }
   & code {
+    font-family: "Source Code Pro", monospace;
     font-size: 1.3rem;
   }
   & blockquote {
