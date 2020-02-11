@@ -42,10 +42,14 @@ const Root = styled.div`
   display: grid;
   grid-template-columns: 5vw calc(100vw - 10vw) 5vw;
   margin-bottom: 10vh;
-  /* desktop */
-  @media screen and (min-width: 800px) {
+  /* desktop lg */
+  @media screen and (min-width: 1200px) {
     /* 10vw : 1 : 0.381 : 10vw */
     grid-template-columns: 10vw calc((100vw - 20vw) * 0.724) auto 10vw;
+  }
+  /* desktop */
+  @media screen and (min-width: 800px) and (max-width: 1200px) {
+    grid-template-columns: 10vw calc((100vw - 20vw) * 0.85) auto 10vw;
   }
 `;
 
