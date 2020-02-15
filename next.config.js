@@ -5,6 +5,9 @@ module.exports = {
     GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
   webpack: config => {
+    config.node = {
+      fs: "empty",
+    };
     // Perform customizations to config
     config.module.rules.push({
       test: /\.md$/,
