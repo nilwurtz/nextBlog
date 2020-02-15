@@ -38,11 +38,11 @@ const divideCodeLang = (lang: string): CodeLabelProps => {
   }
 };
 
-const CodeBlock: React.FC<CodeProps> = (props: CodeProps) => {
+export const CodeBlock: React.FC<CodeProps> = (props: CodeProps) => {
   const codeProps = divideCodeLang(props.language);
   return (
     <>
-      {codeProps.fileName ? <CodeLabel>{codeProps.fileName}</CodeLabel> : null}
+      {codeProps.fileName ? <CodeLabel className="label">{codeProps.fileName}</CodeLabel> : null}
 
       <CodeArea language={codeProps.lang} style={tomorrowNightBlue}>
         {props.value}
@@ -53,11 +53,16 @@ const CodeBlock: React.FC<CodeProps> = (props: CodeProps) => {
 
 const CodeArea = styled(SyntaxHighlighter)`
   margin: 1.5rem 0;
+  & code {
+    font-family: "Source Code Pro", monospace;
+  }
+  font-size: 1.3rem;
   & pre {
     overflow-x: scroll;
   }
   @media screen and (min-width: 800px) {
     margin: 2rem;
+    font-size: 1.7rem;
   }
 `;
 
@@ -131,6 +136,7 @@ const MarkDownArea = styled(ReactMarkdown)`
     font-size: inherit;
   }
   & code {
+    font-family: "Source Code Pro", monospace;
     font-size: 1.3rem;
   }
   & blockquote {
