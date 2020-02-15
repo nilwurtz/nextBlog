@@ -39,5 +39,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start"
+  },
+  "browser": {
+    "fs": false
   }
 }
