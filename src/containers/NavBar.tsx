@@ -30,7 +30,7 @@ export const NavBar: NextComponentType = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Posts", href: "/post" },
-    { name: "Contact", href: "#" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const handleOpen = (): void => {

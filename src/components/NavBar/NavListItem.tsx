@@ -1,7 +1,6 @@
 import { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
 
 type Props = {
   name: string;
