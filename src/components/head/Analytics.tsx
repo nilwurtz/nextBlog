@@ -6,7 +6,11 @@ export const GoogleAnalytics: React.FC = () => {
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`}></script>
       <script
         dangerouslySetInnerHTML={{
-          __html: `(function(){ window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${process.env.GA_TRACKING_ID}');})`,
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-158100669-1');`,
         }}
       />
     </>
