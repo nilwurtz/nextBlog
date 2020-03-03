@@ -2,6 +2,7 @@
 title: PythonとJavaScriptの配列ループを比較
 tags: Python JavaScript 初心者
 author: ragnar1904
+date: 2020-03-04
 slide: false
 ---
 
