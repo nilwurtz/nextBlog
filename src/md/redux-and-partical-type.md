@@ -9,7 +9,7 @@ slide: false
 
 TypescriptにはPartical型というものが存在し、すべてのプロパティを省略可能にした型がある。
 
-```ts
+```typescript
 type User = {
   firstName: string;
   lastName: string;
@@ -35,7 +35,7 @@ Reduxでフォームの値を保持するケースも多々あるが、これを
 
 型を書いていく。今回は`User`型のデータを入力するフォームの想定。
 
-```ts
+```typescript
 import { Action } from "redux";
 
 export const ActionTypes = {
@@ -64,7 +64,7 @@ export type FormActionTypes = UserFormChangeAction;
 `payload`には、`Partical<User>` 型、すなわち`User`型オブジェクトの一部分を渡す。  
 このため型安全を保ちつつ、更新するフォームの値のみを渡すことができる。
 
-```ts
+```typescript
 export const userFormChangeAction = (user: Partial<User>): FormActionTypes => {
   return {
     type: ActionTypes.userFormChange,
@@ -76,7 +76,7 @@ export const userFormChangeAction = (user: Partial<User>): FormActionTypes => {
 ## Reducer
 `Object.assign`を使って、前のstateとマージする。
 
-```ts
+```typescript
 const initialState: User = {
   firstName: "",
   lastName: "",
@@ -103,7 +103,7 @@ conbineするだけなのでstore省略。
 
 ReactコンポーネントでFormを更新する例。
 
-```tsx:コンポーネント
+```typescript:コンポーネント
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -129,7 +129,7 @@ export const UserForm: React.FC = () => {
 
 似たような関数なので、まとめてしまうとスッキリ。
 
-```tsx
+```typescript
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -161,7 +161,7 @@ export const UserForm: React.FC = () => {
 
 `keyof User`は、`User`型のプロパティのみを抜き出した型。
 
-```ts
+```typescript
 type User = {
   firstName: string;
   lastName: string;
@@ -176,7 +176,7 @@ type KeyOfUser = keyof User;
 
 これを引数にし、actionにわたすpayloadのオブジェクトを動的に変更する。
 
-```ts
+```typescript
 // オブジェクトのキーを動的に指定
 { [key]: value }
 ```
