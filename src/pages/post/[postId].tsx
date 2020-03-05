@@ -21,6 +21,7 @@ const PostDetailPage: NextPage<Props> = props => {
     <React.Fragment>
       <Head>
         <title key="title">{meta.title} - Ragnar Blog</title>
+        <meta name="keywords" content={meta.tags.split(" ").join(",")}></meta>
       </Head>
       <TitleHeader title={meta.title} date={formattedDate} />
       <Root>
