@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/react-syntax-highlighter": "^11.0.4",
+    "babel-plugin-static-fs": "^3.0.0",
     "dotenv": "^8.2.0",
     "gray-matter": "^4.0.2",
     "next": "^9.2.1",

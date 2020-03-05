@@ -51,7 +51,7 @@ const Index: NextPage<InitialProps> = props => {
             <p>Typescriptに感動した結果、</p>
             <p>いつのまにかこんなサイトを作っていた。</p>
             <p>主に自分の詰まった部分の記事を上げていく。</p>
-            <Link href="/about">
+            <Link href="/post">
               <a>Posts Page</a>
             </Link>
           </TextBox>
