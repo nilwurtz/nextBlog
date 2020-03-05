@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useStep = (text: string, stepTime: number) => {
+export const useStep = (text: string, stepTime: number): string => {
   const [length, setLength] = useState(0);
 
   const lengthRef = useRef(length);
