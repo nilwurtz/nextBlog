@@ -41,7 +41,7 @@ print(for_map(array))
 
 ```python
 def for_map(array: List[str]) -> List[str]:
-    return [i for i in map(add_suffix, array)]
+    return list(map(add_suffix, array))
 
 print(for_in(array))
 # ['hoge__', 'fuga__', 'foo__', 'bar__']
