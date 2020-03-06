@@ -9,20 +9,19 @@ export const Loading: React.FC = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  const handleStart = url => {
+    if (url !== router.pathname) {
+      setLoading(true);
+      nprogress.start();
+    }
+  };
+  const handleComplete = url => {
+    if (url !== router.pathname) {
+      setLoading(false);
+      nprogress.done();
+    }
+  };
   useEffect(() => {
-    const handleStart = url => {
-      if (url !== router.pathname) {
-        setLoading(true);
-        nprogress.start();
-      }
-    };
-    const handleComplete = url => {
-      if (url !== router.pathname) {
-        setLoading(false);
-        nprogress.done();
-      }
-    };
-
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);

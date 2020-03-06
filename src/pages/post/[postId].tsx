@@ -78,8 +78,12 @@ const SideArea = styled.div`
 
 PostDetailPage.getInitialProps = async (context: NextPageContext): Promise<any> => {
   const { postId } = context.query;
-  const content = await import(`../../md/${postId}.md`);
-  const data = matter(content.default);
+  const contexts = require.context("../../md", true, /\.md$/);
+  const content = contexts.keys().filter(path => {
+    const fileName = path.match(/([^/]*)(?:\.([^.]+$))/)[1];
+    return fileName === postId;
+  });
+  const data = matter(contexts(content[0]).default);
   return { md: data };
 };
 
