@@ -1,5 +1,5 @@
 import matter from 'gray-matter';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
@@ -45,7 +45,7 @@ const Root = styled.div`
   }
 `;
 
-PostListPage.getInitialProps = async function() {
+export const getStaticProps: GetStaticProps = async () => {
   // get all .md files from the src/posts dir
   const contexts = require.context("../../md", true, /\.md$/);
   const posts = contexts.keys().map(path => {
@@ -64,8 +64,15 @@ PostListPage.getInitialProps = async function() {
     return 0;
   });
 
+  posts.map(post => {
+    delete post.md.orig;
+    post.md.data.date = post.md.data.date ? new Date(post.md.data.date).toISOString() : null;
+  });
+
   return {
-    posts: posts,
+    props: {
+      posts: posts,
+    },
   };
 };
 
