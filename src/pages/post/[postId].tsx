@@ -1,5 +1,5 @@
 import matter from 'gray-matter';
-import { NextPage, NextPageContext } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
@@ -76,15 +76,34 @@ const SideArea = styled.div`
   }
 `;
 
-PostDetailPage.getInitialProps = async (context: NextPageContext): Promise<any> => {
-  const { postId } = context.query;
+export const getStaticPaths: GetStaticPaths = async function() {
+  // get all .md files from the src/posts dir
+  const contexts = require.context("../../md", true, /\.md$/);
+  const allPosts = contexts.keys().map(path => {
+    // 拡張子を省いたファイル名
+    const fileName = path.match(/([^/]*)(?:\.([^.]+$))/)[1];
+    return { params: fileName };
+  });
+
+  return {
+    paths: allPosts.map(post => `/post/${post.params}`) || [],
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async context => {
+  const { postId } = context.params;
   const contexts = require.context("../../md", true, /\.md$/);
   const content = contexts.keys().filter(path => {
     const fileName = path.match(/([^/]*)(?:\.([^.]+$))/)[1];
     return fileName === postId;
   });
-  const data = matter(contexts(content[0]).default);
-  return { md: data };
+  const matterData = matter(contexts(content[0]).default);
+  delete matterData.orig;
+  if (matterData.data.date) {
+    matterData.data.date = new Date(matterData.data.date).toISOString();
+  }
+  return { props: { md: matterData } };
 };
 
 export default PostDetailPage;

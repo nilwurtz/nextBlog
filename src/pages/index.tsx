@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -65,12 +65,14 @@ const Index: NextPage<InitialProps> = props => {
 
 export default Index;
 
-Index.getInitialProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const profile = fs.readFileSync("./src/codes/profileCode.py");
   const site = fs.readFileSync("./src/codes/thisSite.ts");
   return {
-    profile: { code: profile.toString(), language: "python" },
-    site: { code: site.toString(), language: "typescript" },
+    props: {
+      profile: { code: profile.toString(), language: "python" },
+      site: { code: site.toString(), language: "typescript" },
+    },
   };
 };
 
