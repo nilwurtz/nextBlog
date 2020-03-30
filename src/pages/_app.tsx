@@ -1,9 +1,17 @@
 import 'ress';
 
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import ApolloClient from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { onError } from 'apollo-link-error';
+import { createHttpLink, HttpLink } from 'apollo-link-http';
+import fetch from 'isomorphic-unfetch';
 import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+
+import { ApolloProvider } from '@apollo/react-hooks';
 
 import { Loading } from '../components/common/Loading';
 import { NavBar } from '../containers/NavBar';
@@ -110,16 +118,26 @@ const GlobalStyle = createGlobalStyle`
 `;
 export default class extends App {
   render() {
+    const httpLink = new HttpLink({ uri: "https://ragnar-blog-backend.herokuapp.com/graphql/", fetch: fetch });
+    const cache = new InMemoryCache();
+    const errorLink = onError(({ graphQLErrors }) => {
+      if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+    });
+
+    const link = ApolloLink.from([errorLink, httpLink]);
+    const client = new ApolloClient({ link, cache });
     const { Component, pageProps } = this.props;
     return (
       <React.Fragment>
-        <Head>
-          <title key="title">Ragnar Blog</title>
-        </Head>
-        <Loading />
-        <NavBar />
-        <Component {...pageProps} />
-        <GlobalStyle />
+        <ApolloProvider client={client}>
+          <Head>
+            <title key="title">Ragnar Blog</title>
+          </Head>
+          <Loading />
+          <NavBar />
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </ApolloProvider>
       </React.Fragment>
     );
   }

@@ -1,8 +1,11 @@
+import gql from 'graphql-tag';
 import matter from 'gray-matter';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
+
+import { useQuery } from '@apollo/react-hooks';
 
 import { Footer } from '../../components/common/Footer';
 import { PostList } from '../../containers/PostList';
@@ -13,8 +16,21 @@ type Props = {
     md: matter.GrayMatterFile<any>;
   }[];
 };
-
+const GET_POSTS = gql`
+  query GetPosts {
+    allPosts {
+      edges {
+        node {
+          id
+          title
+          rawId
+        }
+      }
+    }
+  }
+`;
 export const PostListPage: NextPage<Props> = props => {
+  const { loading, error, data } = useQuery(GET_POSTS);
   const posts = props.posts;
   return (
     <>
