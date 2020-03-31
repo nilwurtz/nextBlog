@@ -25,6 +25,7 @@ const Root = styled.div<{ clickable: boolean }>`
   border: 1.5px solid ${color.primary.dark};
   transition: background-color 250ms ease-out;
   position: relative;
+
   & :hover {
     background: ${({ clickable }): string => (clickable ? color.white : "inherit")};
   }

@@ -1,6 +1,4 @@
-import gql from 'graphql-tag';
-import matter from 'gray-matter';
-import { GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
@@ -9,38 +7,52 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { Footer } from '../../components/common/Footer';
 import { PostList } from '../../containers/PostList';
+import { GET_POSTS } from '../../query/queries/getPosts';
+import { GetPosts } from '../../types/api';
 
-type Props = {
-  posts: {
-    fileName: string;
-    md: matter.GrayMatterFile<any>;
-  }[];
-};
-const GET_POSTS = gql`
-  query GetPosts {
-    allPosts {
-      edges {
-        node {
-          id
-          title
-          rawId
-        }
-      }
-    }
-  }
-`;
-export const PostListPage: NextPage<Props> = props => {
-  const { loading, error, data } = useQuery(GET_POSTS);
-  const posts = props.posts;
+export const PostListPage: NextPage = () => {
+  const { loading, error, data, fetchMore } = useQuery<GetPosts>(GET_POSTS);
+  if (loading) return <div>{"Loading..."}</div>;
+  if (error) return <div>{`Error! ${error.message}`}</div>;
   return (
     <>
       <Head>
         <title key="title">記事一覧 - Ragnar Blog</title>
       </Head>
       <Title>記事一覧</Title>
-      <Root>
-        <PostList posts={posts} style={{ gridColumn: "2/3" }} />
-      </Root>
+
+      {data && data.allPosts && data.allPosts.edges ? (
+        <Root>
+          <PostList edges={data.allPosts.edges} style={{ gridColumn: "2/3" }} />
+        </Root>
+      ) : null}
+      {data.allPosts.pageInfo.hasNextPage ? (
+        <button
+          onClick={() => {
+            fetchMore({
+              variables: {
+                after: data.allPosts.pageInfo.endCursor,
+              },
+              updateQuery: (previousResult, { fetchMoreResult }) => {
+                const newPageInfo = fetchMoreResult.allPosts.pageInfo;
+                const newEdges = fetchMoreResult.allPosts.edges;
+                return newEdges.length
+                  ? {
+                      allPosts: {
+                        __typename: previousResult.allPosts.__typename,
+                        edges: [...previousResult.allPosts.edges, ...newEdges],
+                        pageInfo: newPageInfo,
+                      },
+                    }
+                  : previousResult;
+              },
+            });
+          }}>
+          CLICK HERE
+        </button>
+      ) : (
+        <div>{"ok"}</div>
+      )}
       <Footer />
     </>
   );
@@ -60,36 +72,5 @@ const Root = styled.div`
     grid-template-columns: 1fr 800px 1fr;
   }
 `;
-
-export const getStaticProps: GetStaticProps = async () => {
-  // get all .md files from the src/posts dir
-  const contexts = require.context("../../md", true, /\.md$/);
-  const posts = contexts.keys().map(path => {
-    // 拡張子を省いたファイル名
-    const fileName = path.match(/([^/]*)(?:\.([^.]+$))/)[1];
-    const mdData = matter(contexts(path).default);
-    return {
-      fileName: fileName,
-      md: mdData,
-    };
-  });
-  // postを日付でソート
-  posts.sort((a, b) => {
-    if (a.md.data.date > b.md.data.date) return -1;
-    if (a.md.data.date < b.md.data.date) return 1;
-    return 0;
-  });
-
-  posts.map(post => {
-    delete post.md.orig;
-    post.md.data.date = post.md.data.date ? new Date(post.md.data.date).toISOString() : null;
-  });
-
-  return {
-    props: {
-      posts: posts,
-    },
-  };
-};
 
 export default PostListPage;

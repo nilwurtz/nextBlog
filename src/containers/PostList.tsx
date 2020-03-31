@@ -1,22 +1,21 @@
-import matter from 'gray-matter';
 import React from 'react';
 import styled from 'styled-components';
 
 import { PostCard } from '../components/Post/PostCard';
+// eslint-disable-next-line @typescript-eslint/camelcase
+import { GetPosts_allPosts } from '../types/api';
 
 type Props = {
-  posts: {
-    fileName: string;
-    md: matter.GrayMatterFile<any>;
-  }[];
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  edges: GetPosts_allPosts["edges"];
   style?: React.CSSProperties;
 };
 
 export const PostList: React.FC<Props> = props => {
   return (
     <Root style={props.style}>
-      {props.posts.map((item, key) => (
-        <PostCard key={key} fileName={item.fileName} md={item.md} />
+      {props.edges.map(item => (
+        <PostCard key={item.node.id} node={item.node} />
       ))}
     </Root>
   );

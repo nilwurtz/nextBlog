@@ -1,33 +1,39 @@
-import matter from 'gray-matter';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import { isArray } from 'util';
+
+import { useQuery } from '@apollo/react-hooks';
 
 import { Footer } from '../../components/common/Footer';
 import { MarkDownViewer } from '../../components/Post/MarkDownViewer';
 import { TitleHeader } from '../../components/Post/TitleHeader';
 import { SocialButtons } from '../../components/social/ShareButtons';
+import { GET_POST } from '../../query/queries/getPost';
+import { GetPost } from '../../types/api';
 import { dateFormat } from '../../utils/date';
 
-type Props = {
-  md?: matter.GrayMatterFile<any>;
-};
-
-const PostDetailPage: NextPage<Props> = props => {
-  const meta = props.md.data;
-  const formattedDate = meta.date ? dateFormat(meta.date) : "2000-01-01";
+const PostDetailPage: NextPage = () => {
+  const router = useRouter();
+  const rawId = isArray(router.query.postId) ? router.query.postId.join("") : router.query.postId;
+  const { loading, error, data } = useQuery<GetPost>(GET_POST, {
+    variables: {
+      rawId: parseInt(rawId),
+    },
+  });
+  if (loading) return <div>{"Loading..."}</div>;
+  if (error) return <div>{`Error! ${error.message}`}</div>;
   return (
     <React.Fragment>
       <Head>
-        <title key="title">{meta.title} - Ragnar Blog</title>
-        <meta name="keywords" content={meta.tags.split(" ").join(",")}></meta>
+        <title key="title">{data.post.title} - Ragnar Blog</title>
+        <meta name="keywords" content={data.post.tags.map(item => item.name).join(",")}></meta>
       </Head>
-      <TitleHeader title={meta.title} date={formattedDate} />
+      <TitleHeader title={data.post.title} date={dateFormat(data.post.createdAt)} />
       <Root>
-        <ContentArea>
-          <MarkDownViewer md={props.md.content} />
-        </ContentArea>
+        <ContentArea>{data && data.post && data.post.body ? <MarkDownViewer md={data.post.body} /> : null}</ContentArea>
         <SideArea>
           <div>
             <SocialButtons vertical={true} />
@@ -75,35 +81,5 @@ const SideArea = styled.div`
     top: 100px;
   }
 `;
-
-export const getStaticPaths: GetStaticPaths = async function() {
-  // get all .md files from the src/posts dir
-  const contexts = require.context("../../md", true, /\.md$/);
-  const allPosts = contexts.keys().map(path => {
-    // 拡張子を省いたファイル名
-    const fileName = path.match(/([^/]*)(?:\.([^.]+$))/)[1];
-    return { params: fileName };
-  });
-
-  return {
-    paths: allPosts.map(post => `/post/${post.params}`) || [],
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async context => {
-  const { postId } = context.params;
-  const contexts = require.context("../../md", true, /\.md$/);
-  const content = contexts.keys().filter(path => {
-    const fileName = path.match(/([^/]*)(?:\.([^.]+$))/)[1];
-    return fileName === postId;
-  });
-  const matterData = matter(contexts(content[0]).default);
-  delete matterData.orig;
-  if (matterData.data.date) {
-    matterData.data.date = new Date(matterData.data.date).toISOString();
-  }
-  return { props: { md: matterData } };
-};
 
 export default PostDetailPage;
