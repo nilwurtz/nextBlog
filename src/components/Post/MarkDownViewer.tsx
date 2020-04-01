@@ -131,7 +131,8 @@ const MarkDownArea = styled(ReactMarkdown)`
     font-size: 1.5rem;
     margin: 0.5em 0;
   }
-  & p code {
+  & p code,
+  li code {
     padding: 0.1em 0.4em;
     background-color: ${color.white};
     font-size: inherit;
@@ -139,6 +140,9 @@ const MarkDownArea = styled(ReactMarkdown)`
   & code {
     font-family: "Source Code Pro", monospace;
     font-size: 1.3rem;
+  }
+  & hr {
+    margin: 5rem 0;
   }
   & blockquote {
     margin: 2rem 2rem;

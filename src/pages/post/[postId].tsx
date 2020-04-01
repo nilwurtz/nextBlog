@@ -7,6 +7,7 @@ import { isArray } from 'util';
 
 import { useQuery } from '@apollo/react-hooks';
 
+import { Fetching } from '../../components/common/Fetching';
 import { Footer } from '../../components/common/Footer';
 import { MarkDownViewer } from '../../components/Post/MarkDownViewer';
 import { TitleHeader } from '../../components/Post/TitleHeader';
@@ -23,7 +24,7 @@ const PostDetailPage: NextPage = () => {
       rawId: parseInt(rawId),
     },
   });
-  if (loading) return <div>{"Loading..."}</div>;
+  if (loading) return <Fetching />;
   if (error) return <div>{`Error! ${error.message}`}</div>;
   return (
     <React.Fragment>

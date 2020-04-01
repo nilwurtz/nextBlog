@@ -133,7 +133,6 @@ export default class extends App {
           <Head>
             <title key="title">Ragnar Blog</title>
           </Head>
-          <Loading />
           <NavBar />
           <Component {...pageProps} />
           <GlobalStyle />

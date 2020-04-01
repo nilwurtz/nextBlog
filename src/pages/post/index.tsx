@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { useQuery } from '@apollo/react-hooks';
 
+import { Fetching } from '../../components/common/Fetching';
 import { Footer } from '../../components/common/Footer';
 import { ReadMoreArea, ReadMoreButton } from '../../components/Post/ReadMore';
 import { PostList } from '../../containers/PostList';
@@ -13,7 +14,7 @@ import { GetPosts } from '../../types/api';
 
 export const PostListPage: NextPage = () => {
   const { loading, error, data, fetchMore } = useQuery<GetPosts>(GET_POSTS);
-  if (loading) return <div>{"Loading..."}</div>;
+  if (loading) return <Fetching />;
   if (error) return <div>{`Error! ${error.message}`}</div>;
   return (
     <>
