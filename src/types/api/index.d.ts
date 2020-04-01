@@ -120,6 +120,7 @@ export interface GetPosts_allPosts {
    * Pagination data for this connection.
    */
   readonly pageInfo: GetPosts_allPosts_pageInfo;
+  readonly totalCount: number | null;
   /**
    * Contains the nodes in this connection.
    */

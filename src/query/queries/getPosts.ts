@@ -9,6 +9,7 @@ export const GET_POSTS = gql`
         endCursor
         startCursor
       }
+      totalCount
       edges {
         node {
           id

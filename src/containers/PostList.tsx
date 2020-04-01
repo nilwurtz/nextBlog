@@ -25,4 +25,7 @@ const Root = styled.div`
   & > div {
     margin: 2em 0;
   }
+  & div:last-child {
+    margin: 2em 0 0 0;
+  }
 `;
