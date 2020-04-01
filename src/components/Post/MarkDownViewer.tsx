@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrowNightBlue } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { breaks } from 'remark-breaks';
 import styled from 'styled-components';
 
 import color from '../../config/color';
@@ -94,7 +95,7 @@ type Props = {
 };
 
 export const MarkDownViewer: React.FC<Props> = (props: Props) => {
-  return <MarkDownArea source={props.md} renderers={{ code: CodeBlock }} />;
+  return <MarkDownArea source={props.md} renderers={{ code: CodeBlock }} plugins={[breaks]} />;
 };
 
 const MarkDownArea = styled(ReactMarkdown)`
