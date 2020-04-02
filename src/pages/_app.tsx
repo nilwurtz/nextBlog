@@ -13,7 +13,6 @@ import { createGlobalStyle } from 'styled-components';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import { Loading } from '../components/common/Loading';
 import { NavBar } from '../containers/NavBar';
 
 const GlobalStyle = createGlobalStyle`
@@ -32,6 +31,9 @@ const GlobalStyle = createGlobalStyle`
   max-width: 100%;
   height: auto;
   }
+  a:visited{
+    color: inherit
+  }
 
   /* Make clicks pass-through */
   #nprogress {
@@ -48,22 +50,6 @@ const GlobalStyle = createGlobalStyle`
 
     width: 100%;
     height: 5px;
-  }
-
-  /* Fancy blur effect */
-  #nprogress .peg {
-    display: none;
-    /* display: block;
-    position: absolute;
-    right: 0px;
-    width: 100px;
-    height: 100%;
-    box-shadow: 0 0 10px #29d, 0 0 5px #29d;
-    opacity: 1;
-
-    -webkit-transform: rotate(3deg) translate(0px, -4px);
-    -ms-transform: rotate(3deg) translate(0px, -4px);
-    transform: rotate(3deg) translate(0px, -4px); */
   }
 
   /* Remove these to get rid of the spinner */

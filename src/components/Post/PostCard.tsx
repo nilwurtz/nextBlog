@@ -35,7 +35,10 @@ export const PostCard: React.FC<Props> = props => {
 };
 
 const PostLinkTitle = styled.h1`
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
+  @media screen and (min-width: 800px) {
+    margin-bottom: 0.5em;
+  }
 `;
 
 const PostLinkMeta = styled.div`

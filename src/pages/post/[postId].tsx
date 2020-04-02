@@ -12,6 +12,7 @@ import { Footer } from '../../components/common/Footer';
 import { MarkDownViewer } from '../../components/Post/MarkDownViewer';
 import { TitleHeader } from '../../components/Post/TitleHeader';
 import { SocialButtons } from '../../components/social/ShareButtons';
+import { Breadcrumb } from '../../containers/Breadcrumb';
 import { GET_POST } from '../../query/queries/getPost';
 import { GetPost } from '../../types/api';
 import { dateFormat } from '../../utils/date';
@@ -26,6 +27,13 @@ const PostDetailPage: NextPage = () => {
   });
   if (loading) return <Fetching />;
   if (error) return <div>{`Error! ${error.message}`}</div>;
+
+  const paths = [
+    { href: "/", label: "Home" },
+    { href: "/post", label: "Posts" },
+    { href: "/", label: data.post.category.name },
+    { href: `/post/${rawId}`, label: data.post.title },
+  ];
   return (
     <React.Fragment>
       <Head>
@@ -34,7 +42,10 @@ const PostDetailPage: NextPage = () => {
       </Head>
       <TitleHeader title={data.post.title} date={dateFormat(data.post.createdAt)} />
       <Root>
-        <ContentArea>{data && data.post && data.post.body ? <MarkDownViewer md={data.post.body} /> : null}</ContentArea>
+        <ContentArea>
+          <Breadcrumb paths={paths} />
+          {data && data.post && data.post.body ? <MarkDownViewer md={data.post.body} /> : null}
+        </ContentArea>
         <SideArea>
           <div>
             <SocialButtons vertical={true} />
@@ -64,9 +75,15 @@ const Root = styled.div`
 const ContentArea = styled.div`
   grid-column: 2/3;
   font-size: 1.3rem;
+  & > div {
+    margin-bottom: 1em;
+  }
   /* desktop */
   @media screen and (min-width: 800px) {
     font-size: 1.5rem;
+    & > div {
+      margin-bottom: 2em;
+    }
   }
 `;
 
