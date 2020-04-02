@@ -3,10 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import color from '../../config/color';
+import { TagBadge } from '../common/TagBadge';
 
 type Props = {
   title: string;
   date: string;
+  tags: { id: number | string; label: string }[];
 };
 
 export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props => {
@@ -15,6 +17,14 @@ export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props 
       <TitleArea>
         <h1>{props.title}</h1>
         <p>Date: {props.date}</p>
+        <p>
+          Tags:{" "}
+          <Tags>
+            {props.tags.map(item => {
+              return <TagBadge key={item.id} href="#" label={item.label} />;
+            })}
+          </Tags>
+        </p>
       </TitleArea>
     </Root>
   );
@@ -54,5 +64,12 @@ const TitleArea = styled.div`
     & p {
       font-size: 2rem;
     }
+  }
+`;
+
+const Tags = styled.div`
+  display: inline-flex;
+  > * {
+    margin: 0 0.3em;
   }
 `;

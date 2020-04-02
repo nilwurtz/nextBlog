@@ -34,13 +34,20 @@ const PostDetailPage: NextPage = () => {
     { href: "/", label: data.post.category.name },
     { href: `/post/${rawId}`, label: data.post.title },
   ];
+
   return (
     <React.Fragment>
       <Head>
         <title key="title">{data.post.title} - Ragnar Blog</title>
         <meta name="keywords" content={data.post.tags.map(item => item.name).join(",")}></meta>
       </Head>
-      <TitleHeader title={data.post.title} date={dateFormat(data.post.createdAt)} />
+      <TitleHeader
+        title={data.post.title}
+        date={dateFormat(data.post.createdAt)}
+        tags={data.post.tags.map(item => {
+          return { id: item.id, label: item.name };
+        })}
+      />
       <Root>
         <ContentArea>
           <Breadcrumb paths={paths} />
