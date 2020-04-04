@@ -17,14 +17,14 @@ export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props 
       <TitleArea>
         <h1>{props.title}</h1>
         <p>Date: {props.date}</p>
-        <p>
+        <div style={{ fontSize: "2rem" }}>
           Tags:{" "}
           <Tags>
             {props.tags.map(item => {
               return <TagBadge key={item.id} href="#" label={item.label} />;
             })}
           </Tags>
-        </p>
+        </div>
       </TitleArea>
     </Root>
   );
