@@ -9,6 +9,7 @@ type Props = {
   title: string;
   date: string;
   tags: { id: number | string; label: string }[];
+  category: string;
 };
 
 export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props => {
@@ -16,8 +17,9 @@ export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props 
     <Root>
       <TitleArea>
         <h1>{props.title}</h1>
+        <p>Category: {props.category}</p>
         <p>Date: {props.date}</p>
-        <div style={{ fontSize: "2rem" }}>
+        <div className="tagArea">
           Tags:{" "}
           <Tags>
             {props.tags.map(item => {
@@ -34,7 +36,6 @@ const Root = styled.div`
   width: 100%;
   color: ${color.primary.dark};
   @media screen and (min-width: 800px) {
-    height: 20vh;
     background-color: white;
     display: grid;
     grid-template-columns: 10vw 1fr 10vw;
@@ -44,9 +45,17 @@ const Root = styled.div`
 const TitleArea = styled.div`
   font-size: 1.3rem;
   margin: 1rem;
+  margin-bottom: 1.5em;
   word-break: break-all;
-  & p {
-    margin: 0.5rem 0;
+  & > p,
+  > div {
+    margin-left: 1em;
+  }
+  .tagArea {
+    font-size: 1.3rem;
+    @media screen and (min-width: 800px) {
+      font-size: 2rem;
+    }
   }
 
   @media screen and (min-width: 800px) {
@@ -58,6 +67,7 @@ const TitleArea = styled.div`
     flex-direction: column;
     margin: 0;
     margin-top: 3rem;
+    margin-bottom: 1.5em;
     & h1 {
       font-size: 4rem;
     }

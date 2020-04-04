@@ -43,6 +43,7 @@ const PostDetailPage: NextPage = () => {
       </Head>
       <TitleHeader
         title={data.post.title}
+        category={data.post.category.name}
         date={dateFormat(data.post.createdAt)}
         tags={data.post.tags.map(item => {
           return { id: item.id, label: item.name };

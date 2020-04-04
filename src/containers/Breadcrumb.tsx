@@ -38,11 +38,12 @@ const Base: React.FC<Props> = props => {
 
 export const Breadcrumb = styled(Base)`
   margin: 0;
-  padding: 1.1em 0;
+  padding: 1.1em 0 0 0;
   list-style: none;
   overflow: scroll;
   color: ${color.primary.dark};
   position: relative;
+  font-size: 1.3rem;
   @media screen and (min-width: 800px) {
     overflow: hidden;
     font-size: 1.8rem;
