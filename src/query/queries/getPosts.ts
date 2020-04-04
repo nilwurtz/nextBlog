@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const GET_POSTS = gql`
-  query GetPosts($after: String) {
-    allPosts(first: 10, after: $after) {
+  query GetPosts($after: String, $category: Float) {
+    allPosts(category: $category, first: 10, after: $after) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -16,6 +16,7 @@ export const GET_POSTS = gql`
           title
           rawId
           category {
+            id
             name
           }
           tags {

@@ -78,6 +78,7 @@ export interface GetPosts_allPosts_pageInfo {
 
 export interface GetPosts_allPosts_edges_node_category {
   readonly __typename: "CategoryType";
+  readonly id: string;
   readonly name: string;
 }
 
@@ -133,6 +134,7 @@ export interface GetPosts {
 
 export interface GetPostsVariables {
   readonly after?: string | null;
+  readonly category?: number | null;
 }
 
 /* tslint:disable */
