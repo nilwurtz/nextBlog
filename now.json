@@ -1,7 +1,8 @@
 {
   "build": {
     "env": {
-      "GA_TRACKING_ID": "@ga_tracking_id"
+      "GA_TRACKING_ID": "@ga_tracking_id",
+      "BLOG_BACKEND_URL": "@blog_backend_url"
     }
   }
 }
