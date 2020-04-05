@@ -4,7 +4,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import { createHttpLink, HttpLink } from 'apollo-link-http';
+import { HttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
 import App from 'next/app';
 import Head from 'next/head';
@@ -104,7 +104,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 export default class extends App {
   render() {
-    const httpLink = new HttpLink({ uri: "https://ragnar-blog-backend.herokuapp.com/graphql/", fetch: fetch });
+    const httpLink = new HttpLink({ uri: process.env.BLOG_BACKEND_URL, fetch: fetch });
     const cache = new InMemoryCache();
     const errorLink = onError(({ graphQLErrors }) => {
       if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));

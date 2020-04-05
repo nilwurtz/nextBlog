@@ -3,7 +3,7 @@ module.exports = {
     includes: ["./src/**/*.tsx", "./src/**/*.ts"],
     service: {
       name: "ragnar-blog-backend",
-      url: "https://ragnar-blog-backend.herokuapp.com/graphql/",
+      url: process.env.BLOG_BACKEND_URL,
     },
   },
 };
