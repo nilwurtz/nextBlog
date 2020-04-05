@@ -38,6 +38,10 @@ class CustomDocument extends Document {
           <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"></link>
           <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet"></link>
           <link href="https://fonts.googleapis.com/css?family=Exo|Noto+Sans+JP&display=swap" rel="stylesheet"></link>
+          <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png" />
+          <link rel="icon" href="/favicon.ico" />
+
+          {this.props.styles}
         </Head>
 
         <body>
