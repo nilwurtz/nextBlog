@@ -37,7 +37,7 @@ export const PostListPage: NextPage = () => {
       <Title>
         <h2>記事一覧</h2>
         <br />
-        <h4>カテゴリ: {categoryName}</h4>
+        <h4>Category: {categoryName}</h4>
       </Title>
 
       <Root>

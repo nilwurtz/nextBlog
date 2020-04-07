@@ -23,7 +23,7 @@ export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props 
           Tags:{" "}
           <Tags>
             {props.tags.map(item => {
-              return <TagBadge key={item.id} href="#" label={item.label} />;
+              return <TagBadge key={item.id} href={`/tag/${item.id}`} label={item.label} />;
             })}
           </Tags>
         </div>
