@@ -128,13 +128,24 @@ export interface GetPosts_allPosts {
   readonly edges: ReadonlyArray<(GetPosts_allPosts_edges | null)>;
 }
 
+export interface GetPosts_allTags {
+  readonly __typename: "TagType";
+  readonly id: string;
+  readonly name: string;
+}
+
 export interface GetPosts {
   readonly allPosts: GetPosts_allPosts | null;
+  /**
+   * すべてのタグ
+   */
+  readonly allTags: ReadonlyArray<(GetPosts_allTags | null)> | null;
 }
 
 export interface GetPostsVariables {
   readonly after?: string | null;
   readonly category?: number | null;
+  readonly tags?: number | null;
 }
 
 /* tslint:disable */
