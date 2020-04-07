@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,20 +15,31 @@ import { GET_POSTS } from '../../query/queries/getPosts';
 import { GetPosts } from '../../types/api';
 
 export const PostListPage: NextPage = () => {
-  const { loading, error, data, fetchMore } = useQuery<GetPosts>(GET_POSTS);
+  const router = useRouter();
+  const tagId = Array.isArray(router.query.tagId) ? router.query.tagId.join("") : router.query.tagId;
+  const { loading, error, data, fetchMore } = useQuery<GetPosts>(GET_POSTS, { variables: { tags: tagId } });
+
   if (loading) return <Fetching />;
   if (error) return <div>{`Error! ${error.message}`}</div>;
+  if (data.allPosts.edges.length === 0) return <div>No Results</div>;
+
+  const tagName = data.allTags.filter(item => item.id === tagId)[0].name;
   const paths = [
     { href: "/", label: "Home" },
     { href: "/post", label: "Posts" },
+    { href: `/tag/${tagId}`, label: tagName },
   ];
 
   return (
     <>
       <Head>
-        <title key="title">記事一覧 - Ragnar Blog</title>
+        <title key="title">記事一覧{`[${tagName}]`} - Ragnar Blog</title>
       </Head>
-      <Title>記事一覧</Title>
+      <Title>
+        <h2>記事一覧</h2>
+        <br />
+        <h4>Tag: {tagName}</h4>
+      </Title>
 
       <Root>
         <div className="content">

@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,20 +15,30 @@ import { GET_POSTS } from '../../query/queries/getPosts';
 import { GetPosts } from '../../types/api';
 
 export const PostListPage: NextPage = () => {
-  const { loading, error, data, fetchMore } = useQuery<GetPosts>(GET_POSTS);
+  const router = useRouter();
+  const categoryId = router.query.categoryId;
+  const { loading, error, data, fetchMore } = useQuery<GetPosts>(GET_POSTS, { variables: { category: categoryId } });
   if (loading) return <Fetching />;
   if (error) return <div>{`Error! ${error.message}`}</div>;
+  if (data.allPosts.edges.length === 0) return <div>No Results</div>;
+
+  const categoryName = data.allPosts.edges[0].node.category.name;
   const paths = [
     { href: "/", label: "Home" },
     { href: "/post", label: "Posts" },
+    { href: `/category/${categoryId}`, label: categoryName },
   ];
 
   return (
     <>
       <Head>
-        <title key="title">記事一覧 - Ragnar Blog</title>
+        <title key="title">記事一覧{`[${categoryName}]`} - Ragnar Blog</title>
       </Head>
-      <Title>記事一覧</Title>
+      <Title>
+        <h2>記事一覧</h2>
+        <br />
+        <h4>Category: {categoryName}</h4>
+      </Title>
 
       <Root>
         <div className="content">

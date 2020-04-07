@@ -1,4 +1,4 @@
-import { NextComponentType, NextPageContext } from 'next';
+import { NextComponentType } from 'next';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
