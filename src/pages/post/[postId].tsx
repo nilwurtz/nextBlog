@@ -31,8 +31,8 @@ const PostDetailPage: NextPage = () => {
   const paths = [
     { href: "/", label: "Home" },
     { href: "/post", label: "Posts" },
-    { href: `/category/${data.post.category.id}`, label: data.post.category.name },
-    { href: `/post/${rawId}`, label: data.post.title },
+    { href: "/category/[categoryId]", as: `/category/${data.post.category.id}`, label: data.post.category.name },
+    { href: "/post/[postId]", as: `/post/${rawId}`, label: data.post.title },
   ];
 
   return (

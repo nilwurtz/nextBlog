@@ -26,7 +26,7 @@ export const PostListPage: NextPage = () => {
   const paths = [
     { href: "/", label: "Home" },
     { href: "/post", label: "Posts" },
-    { href: `/category/${categoryId}`, label: categoryName },
+    { href: "/category/[categoryId]", as: `/category/${categoryId}`, label: categoryName },
   ];
 
   return (

@@ -7,12 +7,13 @@ import color from '../../config/color';
 type Props = {
   href: string;
   label: string;
+  linkAs?: string;
   className?: string;
 };
 
 const Base: React.FC<Props> = props => {
   return (
-    <Link href={props.href}>
+    <Link href={props.href} as={props.linkAs}>
       <button className={props.className}>
         <span>{props.label}</span>
       </button>
