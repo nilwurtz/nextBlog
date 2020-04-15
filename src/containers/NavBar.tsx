@@ -1,5 +1,6 @@
 import { NextComponentType } from 'next';
-import React, { useCallback, useEffect, useState } from 'react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { HamburgerButton } from '../components/common/HamburgerButton';
@@ -42,7 +43,9 @@ export const NavBar: NextComponentType = () => {
   return (
     <NavRoot className={isTop ? "" : "dark"}>
       <NavTitle>
-        <a href="/">Ragnar Blog</a>
+        <Link href="/">
+          <a>Ragnar Blog</a>
+        </Link>
       </NavTitle>
       <Btn>
         <HamburgerButton onClick={handleOpen} />

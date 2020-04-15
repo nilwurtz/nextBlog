@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,6 +8,7 @@ type Props = {
   paths: {
     href: string;
     label: string;
+    as?: string;
   }[];
   className?: string;
 };
@@ -19,9 +21,11 @@ const Base: React.FC<Props> = props => {
           return (
             <li key={key} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               {item.href !== location.pathname ? (
-                <a itemProp="item" href={item.href}>
-                  <span itemProp="name">{item.label}</span>
-                </a>
+                <Link href={item.href} as={item.as}>
+                  <a itemProp="item" href={item.as ? item.as : item.href}>
+                    <span itemProp="name">{item.label}</span>
+                  </a>
+                </Link>
               ) : (
                 <a className="now" itemProp="item" href="#">
                   <span itemProp="name">{item.label}</span>

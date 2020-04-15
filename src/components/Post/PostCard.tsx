@@ -21,7 +21,7 @@ export const PostCard: React.FC<Props> = props => {
     .join(" / ");
 
   return (
-    <Link href={"/post/" + data.rawId}>
+    <Link href={"/post/[postId]"} as={"/post/" + data.rawId}>
       <BaseCard clickable={true}>
         <PostLinkTitle>{data.title}</PostLinkTitle>
         <PostLinkMeta>
