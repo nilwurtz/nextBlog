@@ -20,7 +20,7 @@ const Base: React.FC<Props> = props => {
         {props.paths.map((item, key) => {
           return (
             <li key={key} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              {item.href !== location.pathname ? (
+              {typeof window !== "undefined" && item.href !== location.pathname ? (
                 <Link href={item.href} as={item.as}>
                   <a itemProp="item" href={item.as ? item.as : item.href}>
                     <span itemProp="name">{item.label}</span>

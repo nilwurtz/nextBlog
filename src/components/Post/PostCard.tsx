@@ -21,21 +21,26 @@ export const PostCard: React.FC<Props> = props => {
     .join(" / ");
 
   return (
-    <Link href={"/post/[postId]"} as={"/post/" + data.rawId}>
-      <BaseCard clickable={true}>
-        <PostLinkTitle>{data.title}</PostLinkTitle>
-        <PostLinkMeta>
-          <p>tags: {data.tags ? tagsDisplay : "未設定"}</p>
-          <p>author: {data.createdBy.name ? data.createdBy.name : "なし"}</p>
-          <p>date: {dateFormat(data.createdAt)}</p>
-        </PostLinkMeta>
-      </BaseCard>
-    </Link>
+    <BaseCard clickable={true}>
+      <Link href={"/post/[postId]"} as={"/post/" + data.rawId}>
+        <a style={{ textDecoration: "none", color: "inherit" }}>
+          <PostLinkTitle>{data.title}</PostLinkTitle>
+          <PostLinkMeta>
+            <p>tags: {data.tags ? tagsDisplay : "未設定"}</p>
+            <p>author: {data.createdBy.name ? data.createdBy.name : "なし"}</p>
+            <p>date: {dateFormat(data.createdAt)}</p>
+          </PostLinkMeta>
+        </a>
+      </Link>
+    </BaseCard>
   );
 };
 
 const PostLinkTitle = styled.h1`
   margin-bottom: 0.25em;
+  > a {
+    text-decoration: none;
+  }
   @media screen and (min-width: 800px) {
     margin-bottom: 0.5em;
   }
