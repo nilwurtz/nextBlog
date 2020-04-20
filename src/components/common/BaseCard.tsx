@@ -32,9 +32,14 @@ const Root = styled.div<{ clickable: boolean }>`
   &:before {
     content: "";
     position: absolute;
-    top: 1px;
-    left: 0px;
+    top: 0px;
+    left: 0.5px;
     height: calc(100% - 1px);
+    @media screen and (min-width: 800px) {
+      top: 1px;
+      left: 0.5px;
+      height: calc(100% - 1px);
+    }
     width: 20px;
     background-color: pink;
   }

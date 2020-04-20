@@ -66,8 +66,8 @@ const Index: NextPage<InitialProps> = props => {
 export default Index;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const profile = fs.readFileSync("./src/codes/profileCode.py");
-  const site = fs.readFileSync("./src/codes/thisSite.ts");
+  const profile = fs.readFileSync("./src/codes/profileCode.py", { encoding: "utf-8" });
+  const site = fs.readFileSync("./src/codes/thisSite.ts", { encoding: "utf-8" });
   return {
     props: {
       profile: { code: profile.toString(), language: "python" },
