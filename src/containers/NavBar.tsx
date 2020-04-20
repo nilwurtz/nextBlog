@@ -30,7 +30,8 @@ export const NavBar: NextComponentType = () => {
   const navBarContents = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Posts", href: "/post" },
+    { name: "Blog", href: "/category/[categoryId]", as: "/category/3" },
+    { name: "Tech", href: "/category/[categoryId]", as: "/category/2" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -53,7 +54,7 @@ export const NavBar: NextComponentType = () => {
       <NavContainer className={containerClassName}>
         <ul onClick={handleOpen}>
           {navBarContents.map((item, key) => (
-            <NavListItem name={item.name} href={item.href} key={key} />
+            <NavListItem name={item.name} as={item.as} href={item.href} key={key} />
           ))}
         </ul>
       </NavContainer>
