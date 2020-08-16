@@ -28,7 +28,7 @@ const About: NextPage = () => {
           <ProfileIcon>
             <img src="/profile_icon.png" alt="profile icon" width="300px" height="300px" />
           </ProfileIcon>
-          <p>社会人2年目。業務ではPythonをもっぱら触ってます。最近はReact + Typescriptに夢中。</p>
+          <p>社会人2年目。転職しました。SaaSの開発やってます。</p>
           <SocialLinks />
           <BaseCard clickable={false} style={cardStyle}>
             <h1>About This Site</h1>
