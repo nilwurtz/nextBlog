@@ -34,7 +34,6 @@ class CustomDocument extends Document {
       <Html lang="ja">
         <Head>
           <GoogleAnalytics />
-          <meta name="viewport" content="width=device-width,height=device-height" key="viewport" />
           <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"></link>
           <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet"></link>
           <link href="https://fonts.googleapis.com/css?family=Exo|Noto+Sans+JP&display=swap" rel="stylesheet"></link>

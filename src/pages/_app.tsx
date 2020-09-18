@@ -105,6 +105,7 @@ export default class extends App {
         <ApolloProvider client={client}>
           <Head>
             <title key="title">Ragnar Blog</title>
+            <meta name="viewport" content="width=device-width,height=device-height" key="viewport" />
           </Head>
           <NavBar />
           <Component {...pageProps} />
