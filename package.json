@@ -54,7 +54,7 @@
     "build": "next build",
     "start": "next start",
     "codegen": "apollo client:codegen src/types/api/index.d.ts --useReadOnlyTypes --addTypename --target=typescript --outputFlat",
-    "test": "yarn run testcafe chrome __test__/*.ts"
+    "test:e2e": "yarn run testcafe chrome __test__/e2e/*.ts"
   },
   "browser": {
     "fs": false
