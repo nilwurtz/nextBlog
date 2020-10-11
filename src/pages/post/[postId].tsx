@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import { isArray } from 'util';
 
 import { useQuery } from '@apollo/react-hooks';
 
@@ -19,7 +18,7 @@ import { dateFormat } from '../../utils/date';
 
 const PostDetailPage: NextPage = () => {
   const router = useRouter();
-  const rawId = isArray(router.query.postId) ? router.query.postId.join("") : router.query.postId;
+  const rawId = Array.isArray(router.query.postId) ? router.query.postId.join("") : router.query.postId;
   const { loading, error, data } = useQuery<GetPost>(GET_POST, {
     variables: {
       rawId: parseInt(rawId),
