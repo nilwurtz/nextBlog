@@ -8,9 +8,9 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { Fetching } from '../../components/common/Fetching';
 import { Footer } from '../../components/common/Footer';
+import { Breadcrumb } from '../../components/organisms/Breadcrumb';
+import { PostList } from '../../components/organisms/PostList';
 import { ReadMoreArea, ReadMoreButton } from '../../components/Post/ReadMore';
-import { Breadcrumb } from '../../containers/Breadcrumb';
-import { PostList } from '../../containers/PostList';
 import { GET_POSTS } from '../../query/queries/getPosts';
 import { GetPosts } from '../../types/api';
 

@@ -3,18 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 // eslint-disable-next-line @typescript-eslint/camelcase
-import { GetPosts_allPosts_edges_node } from '../../types/api';
+import { Article } from '../../types/api';
 import { dateFormat } from '../../utils/date';
 import { BaseCard } from '../common/BaseCard';
 
-type Props = {
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  node: GetPosts_allPosts_edges_node;
-};
+type Props = Article;
 
 export const PostCard: React.FC<Props> = props => {
-  const data = props.node;
-  const tagsDisplay = data.tags
+  const tagsDisplay = props.tags
     .map(item => {
       return item.name;
     })
@@ -22,13 +18,12 @@ export const PostCard: React.FC<Props> = props => {
 
   return (
     <BaseCard clickable={true}>
-      <Link href={"/post/[postId]"} as={"/post/" + data.rawId}>
+      <Link href={`/post/${props.id}`}>
         <a style={{ textDecoration: "none", color: "inherit" }}>
-          <PostLinkTitle>{data.title}</PostLinkTitle>
+          <PostLinkTitle>{props.title}</PostLinkTitle>
           <PostLinkMeta>
-            <p>tags: {data.tags ? tagsDisplay : "未設定"}</p>
-            <p>author: {data.createdBy.name ? data.createdBy.name : "なし"}</p>
-            <p>date: {dateFormat(data.createdAt)}</p>
+            <p>tags: {props.tags ? tagsDisplay : "未設定"}</p>
+            <p>date: {dateFormat(props.publishedAt)}</p>
           </PostLinkMeta>
         </a>
       </Link>

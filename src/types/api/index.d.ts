@@ -1,3 +1,34 @@
+type MicroCMSContentProperties = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  revisedAt: string;
+};
+
+type MicroCMSListResponse<T> = {
+  contents: T[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+};
+
+type Tag = {
+  name: string;
+} & MicroCMSContentProperties;
+
+type Category = {
+  name: string;
+} & MicroCMSContentProperties;
+
+type Article = {
+  publishedAt: string;
+  title: string;
+  body: string;
+  isPublic: boolean;
+  category: Category;
+  tags: Tag[];
+} & MicroCMSContentProperties;
+
 /* tslint:disable */
 /* eslint-disable */
 // @generated
@@ -125,7 +156,7 @@ export interface GetPosts_allPosts {
   /**
    * Contains the nodes in this connection.
    */
-  readonly edges: ReadonlyArray<(GetPosts_allPosts_edges | null)>;
+  readonly edges: ReadonlyArray<GetPosts_allPosts_edges | null>;
 }
 
 export interface GetPosts_allTags {
@@ -139,7 +170,7 @@ export interface GetPosts {
   /**
    * すべてのタグ
    */
-  readonly allTags: ReadonlyArray<(GetPosts_allTags | null)> | null;
+  readonly allTags: ReadonlyArray<GetPosts_allTags | null> | null;
 }
 
 export interface GetPostsVariables {

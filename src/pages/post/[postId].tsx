@@ -1,57 +1,36 @@
-import { NextPage } from 'next';
+import axios from 'axios';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { useQuery } from '@apollo/react-hooks';
-
-import { Fetching } from '../../components/common/Fetching';
 import { Footer } from '../../components/common/Footer';
-import { MarkDownViewer } from '../../components/Post/MarkDownViewer';
-import { TitleHeader } from '../../components/Post/TitleHeader';
+import { Breadcrumb } from '../../components/organisms/Breadcrumb';
 import { SocialButtons } from '../../components/social/ShareButtons';
-import { Breadcrumb } from '../../containers/Breadcrumb';
-import { GET_POST } from '../../query/queries/getPost';
-import { GetPost } from '../../types/api';
-import { dateFormat } from '../../utils/date';
+import { Article, MicroCMSListResponse } from '../../types/api';
 
-const PostDetailPage: NextPage = () => {
+const PostDetailPage: NextPage<Article> = props => {
   const router = useRouter();
-  const rawId = Array.isArray(router.query.postId) ? router.query.postId.join("") : router.query.postId;
-  const { loading, error, data } = useQuery<GetPost>(GET_POST, {
-    variables: {
-      rawId: parseInt(rawId),
-    },
-  });
-  if (loading) return <Fetching />;
-  if (error) return <div>{`Error! ${error.message}`}</div>;
+  const slug = router.query["postId"];
+  const postId = Array.isArray(slug) ? slug.join("") : slug;
 
   const paths = [
     { href: "/", label: "Home" },
     { href: "/post", label: "Posts" },
-    { href: "/category/[categoryId]", as: `/category/${data.post.category.id}`, label: data.post.category.name },
-    { href: "/post/[postId]", as: `/post/${rawId}`, label: data.post.title },
+    { href: "/category/[categoryId]", as: `/category/${props.category.id}`, label: props.category.name },
+    { href: "/post/[postId]", as: `/post/${postId}`, label: props.title },
   ];
 
   return (
-    <React.Fragment>
+    <>
       <Head>
-        <title key="title">{data.post.title} - Ragnar Blog</title>
-        <meta name="keywords" content={data.post.tags.map(item => item.name).join(",")}></meta>
+        <title key="title">{props.title} - Ragnar Blog</title>
+        <meta name="keywords" content={props.tags.map(item => item.name).join(",")}></meta>
       </Head>
-      <TitleHeader
-        title={data.post.title}
-        category={data.post.category.name}
-        date={dateFormat(data.post.createdAt)}
-        tags={data.post.tags.map(item => {
-          return { id: item.id, label: item.name };
-        })}
-      />
       <Root>
         <ContentArea>
           <Breadcrumb paths={paths} />
-          {data && data.post && data.post.body ? <MarkDownViewer md={data.post.body} /> : null}
         </ContentArea>
         <SideArea>
           <div>
@@ -60,7 +39,7 @@ const PostDetailPage: NextPage = () => {
         </SideArea>
       </Root>
       <Footer />
-    </React.Fragment>
+    </>
   );
 };
 
@@ -106,5 +85,29 @@ const SideArea = styled.div`
     top: 100px;
   }
 `;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const url = process.env.BLOG_BACKEND_URL + "api/v1/articles";
+  const res = await axios.get<MicroCMSListResponse<Article>>(url, {
+    headers: { "X-API-KEY": process.env.BLOG_BACKEND_KEY },
+  });
+  const paths = res.data.contents.map(i => {
+    return { params: { postId: i.id } };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<Article> = async (ctx: GetStaticPropsContext<{ postId: string }>) => {
+  const url = process.env.BLOG_BACKEND_URL + "api/v1/articles/" + ctx.params.postId;
+  const res = await axios.get<Article>(url, {
+    headers: { "X-API-KEY": process.env.BLOG_BACKEND_KEY },
+  });
+  return {
+    props: res.data,
+  };
+};
 
 export default PostDetailPage;
