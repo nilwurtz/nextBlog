@@ -9,7 +9,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { Fetching } from '../../components/common/Fetching';
 import { Footer } from '../../components/common/Footer';
 import { Breadcrumb } from '../../components/organisms/Breadcrumb';
-import { PostList } from '../../components/organisms/PostList';
 import { ReadMoreArea, ReadMoreButton } from '../../components/Post/ReadMore';
 import { GET_POSTS } from '../../query/queries/getPosts';
 import { GetPosts } from '../../types/api';
@@ -43,7 +42,6 @@ export const PostListPage: NextPage = () => {
       <Root>
         <div className="content">
           <Breadcrumb paths={paths} />
-          {data && data.allPosts && data.allPosts.edges ? <PostList edges={data.allPosts.edges} /> : null}
           <ReadMoreArea>
             {data.allPosts.pageInfo.hasNextPage ? (
               <>
