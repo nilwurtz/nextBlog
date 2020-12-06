@@ -1,11 +1,13 @@
 import { Footer } from 'components/common/Footer';
 import { Breadcrumb } from 'components/organisms/Breadcrumb';
+import { TitleHeader } from 'components/organisms/TitleHeader';
 import { MarkDownViewer } from 'components/Post/MarkDownViewer';
 import { SocialButtons } from 'components/social/ShareButtons';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 import { Article } from 'types/api';
+import { dateFormat } from 'utils/date';
 
 export const PostPage: React.FC<Article> = props => {
   const paths = [
@@ -20,6 +22,14 @@ export const PostPage: React.FC<Article> = props => {
         <title key="title">{props.title} - Ragnar Blog</title>
         <meta name="keywords" content={props.tags.map(item => item.name).join(",")}></meta>
       </Head>
+      <TitleHeader
+        title={props.title}
+        category={props.category.name}
+        date={dateFormat(props.publishedAt)}
+        tags={props.tags.map(i => {
+          return { id: i.id, name: i.name };
+        })}
+      />
       <Root>
         <ContentArea>
           <Breadcrumb paths={paths} />

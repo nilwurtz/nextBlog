@@ -8,7 +8,7 @@ import { TagBadge } from '../common/TagBadge';
 type Props = {
   title: string;
   date: string;
-  tags: { id: number | string; label: string }[];
+  tags: { id: string; name: string }[];
   category: string;
 };
 
@@ -23,7 +23,7 @@ export const TitleHeader: NextComponentType<NextPageContext, {}, Props> = props 
           Tags:{" "}
           <Tags>
             {props.tags.map(item => {
-              return <TagBadge key={item.id} href={"/tag/[tagId]"} label={item.label} linkAs={`/tag/${item.id}`} />;
+              return <TagBadge key={item.id} href={"/tag/[tagId]"} label={item.name} linkAs={`/tag/${item.id}`} />;
             })}
           </Tags>
         </div>
