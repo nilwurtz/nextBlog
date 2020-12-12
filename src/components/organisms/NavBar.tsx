@@ -3,11 +3,11 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { HamburgerButton } from '../components/common/HamburgerButton';
-import { NavListItem } from '../components/NavBar/NavListItem';
-import color from '../config/color';
-import fonts from '../config/fonts';
-import { scrollTop } from '../utils/scroll';
+import color from '../../config/color';
+import fonts from '../../config/fonts';
+import { scrollTop } from '../../utils/scroll';
+import { NavListItem } from '../atoms/navbar/NavListItem';
+import { HamburgerButton } from '../common/HamburgerButton';
 
 export const NavBar: NextComponentType = () => {
   const [open, setOpen] = useState(false);
@@ -30,8 +30,8 @@ export const NavBar: NextComponentType = () => {
   const navBarContents = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Blog", href: "/category/[categoryId]", as: "/category/3" },
-    { name: "Tech", href: "/category/[categoryId]", as: "/category/2" },
+    { name: "Blog", href: "/category/3" },
+    { name: "Tech", href: "/category/2" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -54,7 +54,7 @@ export const NavBar: NextComponentType = () => {
       <NavContainer className={containerClassName}>
         <ul onClick={handleOpen}>
           {navBarContents.map((item, key) => (
-            <NavListItem name={item.name} as={item.as} href={item.href} key={key} />
+            <NavListItem name={item.name} href={item.href} key={key} />
           ))}
         </ul>
       </NavContainer>

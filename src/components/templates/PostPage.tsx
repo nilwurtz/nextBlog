@@ -1,8 +1,8 @@
+import { SocialButtons } from 'components/atoms/social/ShareButtons';
 import { Footer } from 'components/common/Footer';
 import { Breadcrumb } from 'components/organisms/Breadcrumb';
 import { TitleHeader } from 'components/organisms/TitleHeader';
 import { MarkDownViewer } from 'components/Post/MarkDownViewer';
-import { SocialButtons } from 'components/social/ShareButtons';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';

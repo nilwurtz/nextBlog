@@ -7,7 +7,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import { NavBar } from '../containers/NavBar';
+import { NavBar } from '../components/organisms/NavBar';
 import { client } from '../utils/apollo';
 
 const GlobalStyle = createGlobalStyle`
@@ -101,7 +101,7 @@ export default class extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <React.Fragment>
+      <>
         <ApolloProvider client={client}>
           <Head>
             <title key="title">Ragnar Blog</title>
@@ -111,7 +111,7 @@ export default class extends App {
           <Component {...pageProps} />
           <GlobalStyle />
         </ApolloProvider>
-      </React.Fragment>
+      </>
     );
   }
 }

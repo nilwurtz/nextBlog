@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import color from '../../config/color';
-import { ShareLinks } from '../../config/social';
+import color from '../../../config/color';
+import { ShareLinks } from '../../../config/social';
 
 type Props = {
   style?: React.CSSProperties;

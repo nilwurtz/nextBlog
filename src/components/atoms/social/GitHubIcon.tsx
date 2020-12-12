@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { SocialUrls } from '../../config/social';
+import { SocialUrls } from '../../../config/social';
 
 export const GitHubIcon: React.FC = () => {
   return (

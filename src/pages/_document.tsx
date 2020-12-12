@@ -2,7 +2,7 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
-import { GoogleAnalytics } from '../components/head/Analytics';
+import { GoogleAnalytics } from '../components/atoms/head/Analytics';
 
 class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
