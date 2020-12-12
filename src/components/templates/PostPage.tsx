@@ -1,5 +1,5 @@
 import { Footer } from 'components/atoms/common/Footer';
-import { SocialButtons } from 'components/atoms/social/ShareButtons';
+import { SocialButtons } from 'components/molecules/social/ShareButtons';
 import { Breadcrumb } from 'components/organisms/Breadcrumb';
 import { TitleHeader } from 'components/organisms/TitleHeader';
 import { MarkDownViewer } from 'components/Post/MarkDownViewer';
