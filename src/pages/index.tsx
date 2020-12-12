@@ -5,8 +5,8 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Footer } from '../components/common/Footer';
-import { LiveCode } from '../components/common/LiveCode';
+import { Footer } from '../components/atoms/common/Footer';
+import { LiveCode } from '../components/atoms/common/LiveCode';
 import color from '../config/color';
 import { IndexHeader } from '../containers/IndexHeader';
 

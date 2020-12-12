@@ -1,8 +1,7 @@
-import { NextComponentType, NextPageContext } from 'next';
 import React from 'react';
 import styled from 'styled-components';
 
-import color from '../../config/color';
+import color from '../../../config/color';
 
 type Props = {
   style?: React.CSSProperties;
@@ -10,15 +9,16 @@ type Props = {
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
-export const BaseCard: NextComponentType<NextPageContext, {}, Props> = props => {
+const BaseCardRoot: React.FCX<Props> = props => {
+  const className = props.clickable ? props.className + " clickable" : props.className;
   return (
-    <Root clickable={props.clickable} onClick={props.onClick} style={props.style}>
+    <div className={className} onClick={props.onClick} style={props.style}>
       {props.children}
-    </Root>
+    </div>
   );
 };
 
-const Root = styled.div<{ clickable: boolean }>`
+export const BaseCard = styled(BaseCardRoot)`
   background: white;
   color: ${color.primary.dark};
   padding: 3em;
@@ -26,8 +26,11 @@ const Root = styled.div<{ clickable: boolean }>`
   transition: background-color 250ms ease-out;
   position: relative;
 
+  &.clickable :hover {
+    background: ${color.white};
+  }
   & :hover {
-    background: ${({ clickable }): string => (clickable ? color.white : "inherit")};
+    background: "inherit";
   }
   &:before {
     content: "";

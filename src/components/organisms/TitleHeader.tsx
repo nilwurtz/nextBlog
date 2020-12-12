@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import color from '../../config/color';
-import { TagBadge } from '../common/TagBadge';
+import { TagBadge } from '../atoms/common/TagBadge';
 
 type Props = {
   title: string;

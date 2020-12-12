@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import color from '../../config/color';
+import color from '../../../config/color';
 
 type Props = {
   label: string;

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 
-import { BaseCard } from '../components/common/BaseCard';
+import { BaseCard } from '../components/atoms/common/BaseCard';
 import color from '../config/color';
 import { SocialUrls } from '../config/social';
 import { SocialLinks } from '../containers/SocialLinks';

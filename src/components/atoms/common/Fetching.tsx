@@ -2,7 +2,7 @@ import nprogress from 'nprogress';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import fonts from '../../config/fonts';
+import fonts from '../../../config/fonts';
 
 export const Fetching: React.FC = () => {
   useEffect(() => {

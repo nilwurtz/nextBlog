@@ -3,7 +3,7 @@ import nprogress from 'nprogress';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import fonts from '../../config/fonts';
+import fonts from '../../../config/fonts';
 
 export const Loading: React.FC = () => {
   const router = useRouter();

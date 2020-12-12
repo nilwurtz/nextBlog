@@ -1,4 +1,4 @@
-import { Footer } from 'components/common/Footer';
+import { Footer } from 'components/atoms/common/Footer';
 import { ListPageTitle } from 'components/molecules/ListPageTitle';
 import { Breadcrumb } from 'components/organisms/Breadcrumb';
 import { PostList } from 'components/organisms/PostList';

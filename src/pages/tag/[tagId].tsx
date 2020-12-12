@@ -6,8 +6,8 @@ import styled from 'styled-components';
 
 import { useQuery } from '@apollo/react-hooks';
 
-import { Fetching } from '../../components/common/Fetching';
-import { Footer } from '../../components/common/Footer';
+import { Fetching } from '../../components/atoms/common/Fetching';
+import { Footer } from '../../components/atoms/common/Footer';
 import { Breadcrumb } from '../../components/organisms/Breadcrumb';
 import { ReadMoreArea, ReadMoreButton } from '../../components/Post/ReadMore';
 import { GET_POSTS } from '../../query/queries/getPosts';

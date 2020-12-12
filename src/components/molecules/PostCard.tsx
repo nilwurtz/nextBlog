@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // eslint-disable-next-line @typescript-eslint/camelcase
 import { Article } from '../../types/api';
 import { dateFormat } from '../../utils/date';
-import { BaseCard } from '../common/BaseCard';
+import { BaseCard } from '../atoms/common/BaseCard';
 
 type Props = Article;
 

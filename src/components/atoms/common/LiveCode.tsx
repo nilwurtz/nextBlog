@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useStep } from '../../hooks/useStep';
-import { CodeBlock } from '../Post/CodeBlock';
+import { useStep } from '../../../hooks/useStep';
+import { CodeBlock } from '../../Post/CodeBlock';
 
 type Props = {
   code: string;

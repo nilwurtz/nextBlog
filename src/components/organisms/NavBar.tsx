@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import color from '../../config/color';
 import fonts from '../../config/fonts';
 import { scrollTop } from '../../utils/scroll';
+import { HamburgerButton } from '../atoms/common/HamburgerButton';
 import { NavListItem } from '../atoms/navbar/NavListItem';
-import { HamburgerButton } from '../common/HamburgerButton';
 
 export const NavBar: NextComponentType = () => {
   const [open, setOpen] = useState(false);
