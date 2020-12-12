@@ -7,8 +7,8 @@ import styled from 'styled-components';
 
 import { Footer } from '../components/atoms/common/Footer';
 import { LiveCode } from '../components/atoms/common/LiveCode';
+import { IndexHeader } from '../components/molecules/IndexHeader';
 import color from '../config/color';
-import { IndexHeader } from '../containers/IndexHeader';
 
 type CodeProps = {
   code: string;

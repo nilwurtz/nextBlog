@@ -2,8 +2,8 @@ import { NextComponentType } from 'next';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import color from '../config/color';
-import fonts from '../config/fonts';
+import color from '../../config/color';
+import fonts from '../../config/fonts';
 
 export const IndexHeader: NextComponentType = () => {
   const [onLoad, setOnLoad] = useState<boolean>(false);

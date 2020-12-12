@@ -4,9 +4,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { BaseCard } from '../components/atoms/common/BaseCard';
+import { SocialLinks } from '../components/organisms/SocialLinks';
 import color from '../config/color';
 import { SocialUrls } from '../config/social';
-import { SocialLinks } from '../containers/SocialLinks';
 
 const About: NextPage = () => {
   const cardStyle: React.CSSProperties = {
