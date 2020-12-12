@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 import { SocialUrls } from '../../../config/social';
 
-export const QiitaIcon: React.FC = () => {
+const BaseQiitaIcon: React.FCX = props => {
   return (
     <a href={SocialUrls.qiita}>
-      <Img src="/qi_icon.png" alt="Qiita icon" width="125px" height="50px" />
+      <img className={props.className} src="/qi_icon.png" alt="Qiita icon" width="125px" height="50px" />
     </a>
   );
 };
 
-const Img = styled.img`
-  border-radius: 50px;
+export const QiitaIcon = styled(BaseQiitaIcon)`
+  border-radius: 50%;
 `;
